@@ -13,9 +13,7 @@ class AppBarIconButton extends StatelessWidget {
           onPressed: () {
             AppThemeCubit.instanse.changeTheme();
           },
-          icon: Icon(
-            Icons.light_mode,
-          ),
+          icon: Icon(AppThemeCubit.instanse.currentIcon),
         );
       },
     );
