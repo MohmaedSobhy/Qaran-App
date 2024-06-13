@@ -17,7 +17,8 @@ abstract class AppTheme {
     ),
     textTheme: const TextTheme(
       titleLarge: AppTextStyle.textBold,
-      bodyMedium: AppTextStyle.text14Black,
+      displayMedium: AppTextStyle.textPoppins20,
+      bodyMedium: AppTextStyle.text18Black,
       labelLarge: AppTextStyle.textAmiri20,
     ),
   );
@@ -35,7 +36,10 @@ abstract class AppTheme {
     ),
     textTheme: TextTheme(
       titleLarge: AppTextStyle.textBold,
-      bodyMedium: AppTextStyle.text14Black,
+      displayMedium: AppTextStyle.textPoppins20,
+      bodyMedium: AppTextStyle.text18Black.copyWith(
+        color: Colors.white,
+      ),
       labelLarge: AppTextStyle.textAmiri20.copyWith(
         color: AppColor.lightGreen,
       ),
