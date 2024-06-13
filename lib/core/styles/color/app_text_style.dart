@@ -14,10 +14,10 @@ abstract class AppTextStyle {
     fontSize: 35,
   );
 
-  static const TextStyle text14Black = TextStyle(
+  static const TextStyle text18Black = TextStyle(
     color: Colors.black,
     fontWeight: FontWeight.w400,
-    fontSize: 14,
+    fontSize: 18,
   );
 
   static const TextStyle textAmiri20 = TextStyle(
