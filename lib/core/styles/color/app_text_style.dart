@@ -15,9 +15,9 @@ abstract class AppTextStyle {
   );
 
   static const TextStyle text18Black = TextStyle(
-    color: Colors.black,
     fontWeight: FontWeight.w400,
     fontSize: 18,
+    color: Colors.black,
   );
 
   static const TextStyle textAmiri20 = TextStyle(
