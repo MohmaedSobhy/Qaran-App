@@ -9,6 +9,10 @@ abstract class AppTheme {
       color: Colors.white,
       elevation: 0.0,
       centerTitle: true,
+      actionsIconTheme: IconThemeData(
+        color: AppColor.darkGreen,
+        size: 28,
+      ),
       titleTextStyle: TextStyle(
         color: AppColor.darkGreen,
         fontSize: 24,
@@ -28,6 +32,10 @@ abstract class AppTheme {
       color: Colors.black,
       elevation: 0.0,
       centerTitle: true,
+      actionsIconTheme: IconThemeData(
+        color: AppColor.white,
+        size: 28,
+      ),
       titleTextStyle: TextStyle(
         color: AppColor.white,
         fontSize: 24,

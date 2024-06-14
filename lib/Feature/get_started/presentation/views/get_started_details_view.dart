@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hafiz_app/core/extensions/context_extensions.dart';
+import 'package:hafiz_app/core/routes/app_route.dart';
 import 'package:hafiz_app/core/widgets/custome_button.dart';
 
 class GetStartedDtailsView extends StatelessWidget {
@@ -32,7 +33,12 @@ class GetStartedDtailsView extends StatelessWidget {
           height: 30,
         ),
         CustomeButton(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              AppRoute.homeScreen,
+              (Route<dynamic> route) => false,
+            );
+          },
           title: context.loaclization().getStarted,
         ),
         SizedBox(

@@ -9,14 +9,18 @@ class AppThemeCubit extends Cubit<AppThemeState> {
   final String themekey = 'Theme Key';
   AppThemeCubit._() : super(AppThemeInitial());
 
+  IconData currentIcon = Icons.light_mode_sharp;
+
   static AppThemeCubit instanse = AppThemeCubit._();
 
   void checkTheme() async {
     dynamic currentTheme = await StorageHelper.get(key: themekey) ?? 'light';
 
     if (currentTheme == 'light') {
+      currentIcon = Icons.light_mode_sharp;
       emit(LightThemeState());
     } else {
+      currentIcon = Icons.dark_mode_sharp;
       emit(DarkThemeState());
     }
   }
@@ -26,9 +30,11 @@ class AppThemeCubit extends Cubit<AppThemeState> {
 
     if (currentTheme == 'light') {
       await StorageHelper.put(key: themekey, value: 'dark');
+      currentIcon = Icons.dark_mode_sharp;
       emit(DarkThemeState());
     } else {
       await StorageHelper.put(key: themekey, value: 'light');
+      currentIcon = Icons.light_mode_sharp;
       emit(LightThemeState());
     }
   }
