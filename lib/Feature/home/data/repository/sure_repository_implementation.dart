@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:hafiz_app/Feature/home/data/model/chapter.dart';
+import 'package:hafiz_app/Feature/home/data/model/ayat.dart';
 import 'package:hafiz_app/Feature/home/data/repository/sura_repository.dart';
 import 'package:hafiz_app/core/api/api_endpoints.dart';
 import 'package:hafiz_app/core/api/dio_helper.dart';
