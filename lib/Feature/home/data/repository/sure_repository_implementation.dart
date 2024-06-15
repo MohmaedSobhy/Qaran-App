@@ -7,6 +7,10 @@ import 'package:hafiz_app/core/api/dio_helper.dart';
 import 'package:hafiz_app/core/errors/failure.dart';
 
 class SureRepositoryImplementation implements SuraRepository {
+  static SureRepositoryImplementation instanse =
+      SureRepositoryImplementation._();
+
+  SureRepositoryImplementation._();
   @override
   Future<Either<Failure, List<AyatModel>>> fetchAyatSura(
       {required int suraId}) async {
