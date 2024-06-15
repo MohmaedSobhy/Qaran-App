@@ -8,6 +8,12 @@ abstract class AppTextStyle {
     fontFamily: "Poppins",
     fontSize: 20,
   );
+  static const TextStyle textAmiri30 = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    fontFamily: "Amiri",
+  );
   static const TextStyle textBold = TextStyle(
     color: AppColor.lightGreen,
     fontWeight: FontWeight.bold,
@@ -15,9 +21,9 @@ abstract class AppTextStyle {
   );
 
   static const TextStyle text18Black = TextStyle(
-    color: Colors.black,
     fontWeight: FontWeight.w400,
     fontSize: 18,
+    color: Colors.black,
   );
 
   static const TextStyle textAmiri20 = TextStyle(

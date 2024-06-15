@@ -44,12 +44,14 @@ abstract class AppTheme {
     ),
     textTheme: TextTheme(
       titleLarge: AppTextStyle.textBold,
-      displayMedium: AppTextStyle.textPoppins20,
+      displayMedium: AppTextStyle.textPoppins20.copyWith(
+        color: Colors.white,
+      ),
       bodyMedium: AppTextStyle.text18Black.copyWith(
         color: Colors.white,
       ),
       labelLarge: AppTextStyle.textAmiri20.copyWith(
-        color: AppColor.lightGreen,
+        color: AppColor.white,
       ),
     ),
   );
