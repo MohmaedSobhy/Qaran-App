@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hafiz_app/Feature/home/data/model/quaran_surah.dart';
-import 'package:hafiz_app/Feature/home/data/repository/sure_repository_implementation.dart';
 import 'package:hafiz_app/core/extensions/context_extensions.dart';
 import 'package:hafiz_app/core/routes/app_route.dart';
 import 'package:hafiz_app/core/styles/color/app_text_style.dart';
