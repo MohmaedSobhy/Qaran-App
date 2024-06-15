@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hafiz_app/Feature/home/data/model/quaran_surah.dart';
 import 'package:hafiz_app/Feature/home/data/repository/sure_repository_implementation.dart';
 import 'package:hafiz_app/core/extensions/context_extensions.dart';
+import 'package:hafiz_app/core/routes/app_route.dart';
 import 'package:hafiz_app/core/styles/color/app_text_style.dart';
 import 'package:hafiz_app/core/utils/image_assets.dart';
 import 'package:hafiz_app/core/widgets/custome_button.dart';
@@ -57,7 +58,8 @@ class LastSuraReadViewCard extends StatelessWidget {
                   ),
                   CustomeButton(
                     onTap: () {
-                      SureRepositoryImplementation().fetchAyatSura(suraId: 1);
+                      Navigator.of(context)
+                          .pushNamed(AppRoute.suraScreen, arguments: suradId);
                     },
                     title: context.loaclization().continueRead,
                   )
