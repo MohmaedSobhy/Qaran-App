@@ -23,7 +23,9 @@ abstract class AppRoute {
         });
       case suraScreen:
         return BaseRoute(pageBuilder: (_, __, ___) {
-          return const SuraScreen();
+          return SuraScreen(
+            suraId: settings.arguments as int,
+          );
         });
     }
     return null;

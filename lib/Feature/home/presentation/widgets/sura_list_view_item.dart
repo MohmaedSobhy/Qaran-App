@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hafiz_app/Feature/home/data/model/quaran_surah.dart';
 import 'package:hafiz_app/Feature/home/presentation/controller/home/home_screen_cubit.dart';
+import 'package:hafiz_app/core/routes/app_route.dart';
 import 'package:hafiz_app/core/styles/color/app_color.dart';
 
 class SuraListViewItem extends StatelessWidget {
@@ -14,6 +15,8 @@ class SuraListViewItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           HomeScreenCubit.instanse.onPresedSuraItem(suraId: surah.id);
+          Navigator.of(context)
+              .pushNamed(AppRoute.suraScreen, arguments: surah.id);
         },
         child: Row(
           children: [
