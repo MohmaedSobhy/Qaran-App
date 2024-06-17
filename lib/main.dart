@@ -6,12 +6,12 @@ import 'package:hafiz_app/qaran_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await StorageHelper.init();
   Future.wait([
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]),
     DioService.init(),
-    StorageHelper.init(),
   ]);
   runApp(const QaranApp());
 }

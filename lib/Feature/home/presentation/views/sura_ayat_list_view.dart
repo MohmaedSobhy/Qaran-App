@@ -23,7 +23,7 @@ class SuraAyatListView extends StatelessWidget {
           );
         } else if (state is LoadingAyatState) {
           return const Center(
-            child: const CircularProgressIndicator(
+            child: CircularProgressIndicator(
               color: AppColor.greenForest,
             ),
           );
