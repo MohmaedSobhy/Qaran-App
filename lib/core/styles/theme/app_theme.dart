@@ -6,7 +6,7 @@ abstract class AppTheme {
   static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
-      color: Colors.white,
+      backgroundColor: Colors.white,
       elevation: 0.0,
       centerTitle: true,
       actionsIconTheme: IconThemeData(
@@ -29,7 +29,7 @@ abstract class AppTheme {
   static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: const AppBarTheme(
-      color: Colors.black,
+      backgroundColor: Colors.black,
       elevation: 0.0,
       centerTitle: true,
       actionsIconTheme: IconThemeData(
