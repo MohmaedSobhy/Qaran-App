@@ -11,6 +11,7 @@ class HomeScreenViewbody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const NeverScrollableScrollPhysics(),
       slivers: [
         SliverToBoxAdapter(
           child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
@@ -25,7 +26,6 @@ class HomeScreenViewbody extends StatelessWidget {
         ),
         SliverFillRemaining(
           child: ListView.builder(
-            //physics: const NeverScrollableScrollPhysics(),
             itemCount: QuranIndex.quranSurahs.length,
             itemBuilder: (context, index) {
               return SuraListViewItem(
@@ -33,7 +33,7 @@ class HomeScreenViewbody extends StatelessWidget {
               );
             },
           ),
-        )
+        ),
       ],
     );
   }
