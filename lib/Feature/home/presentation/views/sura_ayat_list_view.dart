@@ -17,7 +17,9 @@ class SuraAyatListView extends StatelessWidget {
             itemCount: SuraCubit.instanse.ayat.length,
             itemBuilder: (context, index) {
               return AyaListViewItem(
-                ayaText: SuraCubit.instanse.ayat[index].text!,
+                ayaTextAr: SuraCubit.instanse.ayat[index].ar!,
+                ayaTextEn: SuraCubit.instanse.ayat[index].tr!,
+                ayaIndex: index + 1,
               );
             },
           );

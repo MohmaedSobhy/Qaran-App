@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hafiz_app/Feature/home/data/model/quaran_surah.dart';
 import 'package:hafiz_app/Feature/home/presentation/controller/home/home_screen_cubit.dart';
 import 'package:hafiz_app/core/routes/app_route.dart';
-import 'package:hafiz_app/core/styles/color/app_color.dart';
 
 class SuraListViewItem extends StatelessWidget {
   final Surah surah;
@@ -20,16 +19,19 @@ class SuraListViewItem extends StatelessWidget {
         },
         child: Row(
           children: [
-            Card(
-              color: AppColor.lightGreen,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 16.0,
-                  top: 8.0,
-                  bottom: 8.0,
-                  right: 16.0,
+            Container(
+              padding: const EdgeInsets.all(25),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/sura_star.png'),
+                  fit: BoxFit.cover,
                 ),
-                child: Text('${surah.id}'),
+              ),
+              child: Text(
+                '${surah.id}',
+                style: const TextStyle(
+                  fontSize: 12,
+                ),
               ),
             ),
             const SizedBox(
