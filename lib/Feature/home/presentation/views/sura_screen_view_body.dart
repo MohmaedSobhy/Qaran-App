@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hafiz_app/Feature/home/presentation/views/play_sound_button_view.dart';
 import 'package:hafiz_app/Feature/home/presentation/views/sura_ayat_list_view.dart';
 import 'package:hafiz_app/Feature/home/presentation/views/sura_name_card_view.dart';
 
@@ -24,11 +25,7 @@ class SuraScreenViewBody extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          width: double.infinity,
-          color: Colors.orange,
-          child: const Text('Run Sound'),
-        ),
+        const PlaySoundButtonView(),
       ],
     );
   }
