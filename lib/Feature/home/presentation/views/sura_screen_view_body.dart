@@ -8,15 +8,26 @@ class SuraScreenViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: SuraNameCardView(
-            suradId: suraId,
+    return Column(
+      children: [
+        Expanded(
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: SuraNameCardView(
+                  suradId: suraId,
+                ),
+              ),
+              const SliverFillRemaining(
+                child: SuraAyatListView(),
+              ),
+            ],
           ),
         ),
-        const SliverFillRemaining(
-          child: SuraAyatListView(),
+        Container(
+          width: double.infinity,
+          color: Colors.orange,
+          child: const Text('Run Sound'),
         ),
       ],
     );
