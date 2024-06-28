@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:hafiz_app/Feature/home/data/model/ayat.dart';
+import 'package:hafiz_app/Feature/home/data/model/sura_model/ayat_model.dart';
+import 'package:hafiz_app/Feature/home/data/model/sura_model/sura_model.dart';
 import 'package:hafiz_app/Feature/home/data/repository/sure_repository_implementation.dart';
 import 'package:meta/meta.dart';
 
@@ -11,17 +12,17 @@ class SuraCubit extends Cubit<SuraState> {
   static SuraCubit instanse = SuraCubit._();
 
   List<AyatModel> ayat = [];
-
   void fetchAyatSura({required int suraId}) async {
+    print('Call Method');
     emit(LoadingAyatState());
     var data = await SureRepositoryImplementation.instanse
         .fetchAyatSura(suraId: suraId);
 
     data.fold((fail) {
       emit(FailedLoadingAyats());
-    }, (ayat) {
-      this.ayat.clear();
-      this.ayat.addAll(ayat);
+    }, (suraModel) {
+      ayat.clear();
+      ayat.addAll(suraModel.ayat!);
       emit(SuccessLoadingAyats());
     });
   }
