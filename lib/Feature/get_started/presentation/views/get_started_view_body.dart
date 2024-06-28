@@ -13,8 +13,11 @@ class GetStartedViewBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SvgPicture.asset(
-          ImageAssets.imgGroupCircles,
+        Align(
+          alignment: Alignment.topLeft,
+          child: SvgPicture.asset(
+            ImageAssets.imgGroupCircles,
+          ),
         ),
         const Expanded(
           child: GetStartedLogoView(),

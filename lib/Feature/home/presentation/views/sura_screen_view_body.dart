@@ -25,7 +25,9 @@ class SuraScreenViewBody extends StatelessWidget {
             ],
           ),
         ),
-        const PlaySoundButtonView(),
+        PlaySoundButtonView(
+          suraId: suraId,
+        ),
       ],
     );
   }
