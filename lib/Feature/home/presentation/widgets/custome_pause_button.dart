@@ -14,6 +14,5 @@ class PauseButtonIcon extends StatelessWidget {
         color: Colors.green,
       ),
     );
-    ;
   }
 }
