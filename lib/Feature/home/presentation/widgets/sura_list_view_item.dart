@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hafiz_app/Feature/home/data/model/quaran_surah.dart';
 import 'package:hafiz_app/Feature/home/presentation/controller/home/home_screen_cubit.dart';
 import 'package:hafiz_app/core/routes/app_route.dart';
+import 'package:hafiz_app/core/services/local_notification.dart';
 
 class SuraListViewItem extends StatelessWidget {
   final Surah surah;

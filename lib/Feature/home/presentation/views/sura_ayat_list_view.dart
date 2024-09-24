@@ -13,7 +13,7 @@ class SuraAyatListView extends StatelessWidget {
     return BlocBuilder<SuraCubit, SuraState>(
       builder: (context, state) {
         if (state is SuccessLoadingAyats) {
-          return ListView.builder(
+          return SliverList.builder(
             itemCount: SuraCubit.instanse.ayat.length,
             itemBuilder: (context, index) {
               return AyaListViewItem(
@@ -24,13 +24,15 @@ class SuraAyatListView extends StatelessWidget {
             },
           );
         } else if (state is LoadingAyatState) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: AppColor.greenForest,
+          return const SliverToBoxAdapter(
+            child: Center(
+              child: CircularProgressIndicator(
+                color: AppColor.greenForest,
+              ),
             ),
           );
         } else {
-          return const NoInternectConnectionView();
+          return const SliverToBoxAdapter(child: NoInternectConnectionView());
         }
       },
     );

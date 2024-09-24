@@ -19,9 +19,7 @@ class SuraScreenViewBody extends StatelessWidget {
                   suradId: suraId,
                 ),
               ),
-              const SliverFillRemaining(
-                child: SuraAyatListView(),
-              ),
+              const SuraAyatListView(),
             ],
           ),
         ),

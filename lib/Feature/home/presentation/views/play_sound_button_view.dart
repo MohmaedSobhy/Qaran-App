@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hafiz_app/Feature/home/data/model/quaran_surah.dart';
@@ -18,14 +20,15 @@ class PlaySoundButtonView extends StatefulWidget {
 class _PlaySoundButtonViewState extends State<PlaySoundButtonView> {
   @override
   void initState() {
-    super.initState();
     PlaySongCubit.instances.audioPlayer.isPlaying.listen((isPlay) {
+      log(isPlay.toString());
       if (PlaySongCubit.instances.isPlaying != isPlay) {
         setState(() {
           PlaySongCubit.instances.isPlaying = isPlay;
         });
       }
     });
+    super.initState();
   }
 
   @override
