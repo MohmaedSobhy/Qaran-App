@@ -7,15 +7,32 @@ import 'package:hafiz_app/Feature/home/presentation/widgets/custome_pause_button
 import 'package:hafiz_app/Feature/home/presentation/widgets/custome_play_button.dart';
 import 'package:hafiz_app/core/styles/color/app_color.dart';
 
-class PlaySoundButtonView extends StatelessWidget {
+class PlaySoundButtonView extends StatefulWidget {
   final int suraId;
   const PlaySoundButtonView({super.key, required this.suraId});
+
+  @override
+  State<PlaySoundButtonView> createState() => _PlaySoundButtonViewState();
+}
+
+class _PlaySoundButtonViewState extends State<PlaySoundButtonView> {
+  @override
+  void initState() {
+    super.initState();
+    PlaySongCubit.instances.audioPlayer.isPlaying.listen((isPlay) {
+      if (PlaySongCubit.instances.isPlaying != isPlay) {
+        setState(() {
+          PlaySongCubit.instances.isPlaying = isPlay;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: PlaySongCubit.instances
-        ..setSuraId(suraId: suraId)
+        ..setSuraId(suraId: widget.suraId)
         ..checkAudio(),
       child: BlocConsumer<PlaySongCubit, PlaySongState>(
         listener: (context, state) {},
@@ -28,7 +45,7 @@ class PlaySoundButtonView extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    QuranIndex.quranSurahs[suraId - 1].nameArabic,
+                    QuranIndex.quranSurahs[widget.suraId - 1].nameArabic,
                     textDirection: TextDirection.ltr,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
                           color: AppColor.darkGreen,

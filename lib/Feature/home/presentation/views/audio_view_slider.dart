@@ -1,6 +1,4 @@
-import 'dart:async';
-
-import 'package:audioplayers/audioplayers.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hafiz_app/Feature/home/presentation/controller/play_song/play_song_cubit.dart';
@@ -16,20 +14,22 @@ class AudioViewSlider extends StatefulWidget {
 }
 
 class _AudioViewSliderState extends State<AudioViewSlider> {
-  AudioPlayer player = PlaySongCubit.instances.player;
+  AssetsAudioPlayer player = PlaySongCubit.instances.audioPlayer;
   @override
   void initState() {
     super.initState();
 
-    player.onDurationChanged.listen((duration) {
-      PlaySongCubit.instances.duration = duration;
+    player.current.listen((playingAudio) {
+      PlaySongCubit.instances.duration =
+          playingAudio?.audio.duration ?? Duration.zero;
+
       if (mounted) {
         setState(() {});
       }
     });
 
-    player.onPositionChanged.listen((position) {
-      PlaySongCubit.instances.position = position;
+    player.currentPosition.listen((position) {
+      PlaySongCubit.instances.currentPosition = position.inSeconds.toDouble();
       if (mounted) {
         setState(() {});
       }
@@ -42,32 +42,42 @@ class _AudioViewSliderState extends State<AudioViewSlider> {
       padding: const EdgeInsets.only(left: 20, right: 20),
       child: Row(
         children: [
-          Text(_formatDuration(PlaySongCubit.instances.position)),
+          Text(
+            formatDuration(
+              Duration(
+                  seconds: PlaySongCubit.instances.currentPosition.toInt()),
+            ),
+          ),
           Expanded(
             child: Slider(
-              onChanged: (value) {
-                PlaySongCubit.instances.changeSliderValue(value: value);
-              },
+              onChanged: (value) {},
               activeColor: Colors.green,
               inactiveColor: AppColor.lightGreen,
               min: 0,
               max: PlaySongCubit.instances.duration.inSeconds.toDouble(),
-              value: PlaySongCubit.instances.position.inSeconds.toDouble(),
+              value: PlaySongCubit.instances.currentPosition,
             ),
           ),
-          Text(_formatDuration(PlaySongCubit.instances.duration)),
+          Text(formatDuration(PlaySongCubit.instances.duration)),
         ],
       ),
     );
   }
 
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    String twoDigitHours = twoDigits(duration.inHours.remainder(24));
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    if (twoDigitHours == '00') return "$twoDigitMinutes:$twoDigitSeconds";
-    return "$twoDigitHours:$twoDigitMinutes:$twoDigitSeconds";
+  String formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+
+    final hours = twoDigits(duration.inHours); // Extract hours
+    final minutes = twoDigits(duration.inMinutes
+        .remainder(60)); // Extract minutes (remainder after hours)
+    final seconds = twoDigits(duration.inSeconds
+        .remainder(60)); // Extract seconds (remainder after minutes)
+
+    if (duration.inHours > 0) {
+      return '$hours:$minutes:$seconds';
+    } else {
+      return '$minutes:$seconds';
+    }
   }
 
   @override

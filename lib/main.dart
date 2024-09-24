@@ -5,6 +5,7 @@ import 'package:hafiz_app/bloc_observer.dart';
 import 'package:hafiz_app/core/api/dio_helper.dart';
 import 'package:hafiz_app/core/helper/storage_helper.dart';
 import 'package:hafiz_app/qaran_app.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,5 +17,10 @@ void main() async {
     ]),
     DioService.init(),
   ]);
-  runApp(const QaranApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const QaranApp(), // Wrap your app
+    ),
+  );
 }

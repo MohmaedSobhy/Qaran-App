@@ -1,6 +1,9 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'dart:developer';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hafiz_app/Feature/home/data/model/quaran_surah.dart';
 import 'package:meta/meta.dart';
 part 'play_song_state.dart';
 
@@ -8,12 +11,12 @@ class PlaySongCubit extends Cubit<PlaySongState> {
   PlaySongCubit._() : super(PlaySongInitial());
 
   String suraAudioUrl = '';
-  AudioPlayer player = AudioPlayer();
+  AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
   bool isPlaying = false;
   int suraId = 0;
   int prevSuraId = 0;
-  Duration duration = Duration();
-  Duration position = Duration();
+  Duration duration = const Duration();
+  double currentPosition = 0;
 
   static PlaySongCubit instances = PlaySongCubit._();
 
@@ -28,11 +31,11 @@ class PlaySongCubit extends Cubit<PlaySongState> {
     emit(PlaySongLoadingState());
     try {
       if (isPlaying) {
-        await player.pause();
+        await audioPlayer.pause();
         isPlaying = false;
       } else {
         isPlaying = true;
-        await player.resume();
+        await audioPlayer.play();
       }
       emit(PlaySongSuccessState());
     } catch (error) {
@@ -57,29 +60,47 @@ class PlaySongCubit extends Cubit<PlaySongState> {
     if (isPlaying && prevSuraId != suraId) {
       isPlaying = false;
       prevSuraId = suraId;
-      position = Duration.zero;
-      player.pause();
-      await setAudio();
+      currentPosition = 0;
+      duration = Duration.zero;
+      audioPlayer.pause();
+      await playAudioFromNetwork();
       emit(StopPlaySongState());
     } else if (isPlaying == false) {
-      setAudio();
+      await playAudioFromNetwork();
     }
   }
 
   Future<void> setAudioDuration() async {
-    player.getDuration().then((value) {
-      duration = value!;
+    audioPlayer.current.listen((playingAudio) {
+      PlaySongCubit.instances.duration =
+          playingAudio?.audio.duration ?? Duration.zero;
     });
   }
 
   Future<void> changeSliderValue({required double value}) async {}
 
-  Future<void> setAudio() async {
+  Future<void> playAudioFromNetwork() async {
     try {
-      await player.setSource(UrlSource(getAudioUrl()));
+      await audioPlayer.open(
+        Audio.network(
+          getAudioUrl(),
+          metas: Metas(
+            title: QuranIndex.quranSurahs[suraId - 1].nameArabic,
+            artist: 'مشاري راشد',
+            image: const MetasImage.asset('assets/images/appLogo.png'),
+          ),
+        ),
+        autoStart: false,
+        showNotification: true,
+        notificationSettings: const NotificationSettings(
+          nextEnabled: false,
+          prevEnabled: false,
+          stopEnabled: false,
+        ),
+      );
       await setAudioDuration();
-    } catch (error) {
-      emit(PlaySongFailedState());
+    } catch (e) {
+      log(e.toString());
     }
   }
 }
